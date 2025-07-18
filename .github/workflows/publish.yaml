@@ -1,0 +1,26 @@
+name: Build & Publish JNLP Agent
+
+# trigger on pushes to main
+on:
+  push:
+    branches:
+      - main
+
+env:
+  CONTAINER_NAME: jenkins-jnlp-client
+
+jobs:
+  push:
+    runs-on: ubuntu-latest
+    permissions:
+      packages: write
+      contents: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Build and push
+        uses: lsst-dm/build-and-push@main
+        with:
+          platforms: linux/amd64,linux/arm64
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          push: true
