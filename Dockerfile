@@ -1,13 +1,13 @@
-FROM jenkins/inbound-agent:latest-jdk21
+FROM jenkins/inbound-agent:latest-alpine-jdk21
 ARG AGENT_WORKDIR=/j
 USER root
-RUN apt-get update && \
-    apt-get install -y --no-install-recommends \
-#      openjdk8 \
-#      bash \
-#      git \
-      docker.io \
-#      curl \
+RUN apk add --no-cache --upgrade \
+      shadow \
+      openjdk8 \
+      bash \
+      git \
+      docker \
+      curl \
       make
 
 USER jenkins
