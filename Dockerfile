@@ -1,4 +1,4 @@
-FROM jenkins/inbound-agent:latest-alpine-jdk21
+FROM jenkins/inbound-agent:latest-alpine-jdk25
 ARG AGENT_WORKDIR=/j
 USER root
 RUN apk add --no-cache --upgrade \
